@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import type { MockProject } from "@/lib/mock-projects"
+import type { ProjectData } from "@/lib/types"
 
 interface CreateProjectDialogProps {
   open: boolean
@@ -51,7 +51,7 @@ export function CreateProjectDialog({
           />
           {slug && (
             <p className="text-xs text-copy-muted">
-              Slug:{" "}
+              Room ID:{" "}
               <span className="font-mono text-copy-secondary">{slug}</span>
             </p>
           )}
@@ -70,7 +70,7 @@ export function CreateProjectDialog({
 interface RenameProjectDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  project: MockProject | null
+  project: ProjectData | null
   name: string
   onNameChange: (name: string) => void
   onSubmit: () => void
@@ -122,7 +122,7 @@ export function RenameProjectDialog({
 interface DeleteProjectDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  project: MockProject | null
+  project: ProjectData | null
   onConfirm: () => void
   isLoading: boolean
 }
