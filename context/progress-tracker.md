@@ -4,7 +4,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Feature 03: Auth — completed
+- Feature 04: Project Dialogs — completed
 
 ## Current Goal
 
@@ -18,11 +18,11 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## In Progress
 
-- None.
+- Feature 04: Editor home screen, project dialogs (Create/Rename/Delete), sidebar project actions with owned/shared distinction, mobile backdrop scrim, useProjectDialogs hook.
 
 ## Next Up
 
-- Feature 04: next planned feature unit.
+- Feature 05: next planned feature unit.
 
 ## Open Questions
 
