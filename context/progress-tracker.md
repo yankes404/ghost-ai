@@ -4,16 +4,17 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Feature 02: Editor Chrome — in progress
+- Feature 03: Auth — completed
 
 ## Current Goal
 
-- Build EditorNavbar (fixed top bar with sidebar toggle) and ProjectSidebar (floating overlay with Tabs and New Project button).
+- Next planned feature unit.
 
 ## Completed
 
 - 01-design-system: shadcn/ui configured (Nova preset, Tailwind v4), components installed (Button, Card, Dialog, Input, Tabs, Textarea, ScrollArea), lucide-react installed, lib/utils.ts with cn() helper created, dark theme active via `.dark` class on html element.
 - 02-editor-chrome: EditorNavbar and ProjectSidebar shell components created in `components/editor/`.
+- 03-auth: @clerk/ui installed; ClerkProvider with dark theme wraps root layout; proxy.ts created (clerkMiddleware, all routes protected except /sign-in and /sign-up); sign-in and sign-up pages at app/(auth)/sign-in/[[...sign-in]] and app/(auth)/sign-up/[[...sign-up]] with two-panel layout (left: logo + tagline + features, right: Clerk form; mobile: form only); home page (/) redirects authenticated users to /editor and unauthenticated to /sign-in; UserButton added to editor navbar right section.
 
 ## In Progress
 
@@ -21,7 +22,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Feature 03: next planned feature unit.
+- Feature 04: next planned feature unit.
 
 ## Open Questions
 
