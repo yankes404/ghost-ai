@@ -42,6 +42,7 @@ export default function RootLayout({
           colorInputForeground: "var(--text-primary)",
           colorBorder: "var(--border-default)",
           borderRadius: "0.75rem",
+          fontFamily: "var(--font-geist-sans)",
         },
       }}
     >
