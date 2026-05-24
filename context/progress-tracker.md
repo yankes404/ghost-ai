@@ -4,7 +4,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Feature 04: Project Dialogs — completed
+- Feature 05: Prisma data models and client — completed
 
 ## Current Goal
 
@@ -15,14 +15,16 @@ Update this file whenever the current phase, active feature, or implementation s
 - 01-design-system: shadcn/ui configured (Nova preset, Tailwind v4), components installed (Button, Card, Dialog, Input, Tabs, Textarea, ScrollArea), lucide-react installed, lib/utils.ts with cn() helper created, dark theme active via `.dark` class on html element.
 - 02-editor-chrome: EditorNavbar and ProjectSidebar shell components created in `components/editor/`.
 - 03-auth: @clerk/ui installed; ClerkProvider with dark theme wraps root layout; proxy.ts created (clerkMiddleware, all routes protected except /sign-in and /sign-up); sign-in and sign-up pages at app/(auth)/sign-in/[[...sign-in]] and app/(auth)/sign-up/[[...sign-up]] with two-panel layout (left: logo + tagline + features, right: Clerk form; mobile: form only); home page (/) redirects authenticated users to /editor and unauthenticated to /sign-in; UserButton added to editor navbar right section.
+- 04-dialogs: Editor home screen, project dialogs (Create/Rename/Delete), sidebar project actions with owned/shared distinction, mobile backdrop scrim, useProjectDialogs hook.
+- 05-prisma: Project and ProjectCollaborator models in `prisma/models/project.prisma`; migration `20260524194303_init` applied; Prisma Client generated to `app/generated/prisma`; `lib/prisma.ts` singleton with URL branching — `prisma+postgres://` uses built-in `accelerateUrl`, otherwise uses `@prisma/adapter-pg` with direct connection string.
 
 ## In Progress
 
-- Feature 04: Editor home screen, project dialogs (Create/Rename/Delete), sidebar project actions with owned/shared distinction, mobile backdrop scrim, useProjectDialogs hook.
+- None.
 
 ## Next Up
 
-- Feature 05: next planned feature unit.
+- Feature 06: next planned feature unit.
 
 ## Open Questions
 
