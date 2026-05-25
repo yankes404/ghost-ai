@@ -6,6 +6,7 @@ import { useProjectActions } from "@/hooks/use-project-actions"
 import { EditorNavbar } from "./editor-navbar"
 import { ProjectSidebar } from "./project-sidebar"
 import { ProjectDialogContext } from "./project-dialog-context"
+import { WorkspaceProvider } from "./workspace-context"
 import {
   CreateProjectDialog,
   DeleteProjectDialog,
@@ -27,6 +28,7 @@ export function EditorShell({
   const actions = useProjectActions()
 
   return (
+    <WorkspaceProvider>
     <ProjectDialogContext.Provider value={{ openCreate: actions.openCreate }}>
       <div className="h-screen overflow-hidden bg-base">
         <EditorNavbar
@@ -71,5 +73,6 @@ export function EditorShell({
         />
       </div>
     </ProjectDialogContext.Provider>
+    </WorkspaceProvider>
   )
 }

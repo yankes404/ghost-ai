@@ -1,20 +1,22 @@
-"use client"
+"use client";
 
-import { Pencil, Plus, Trash2, X } from "lucide-react"
+import { Pencil, Plus, Trash2, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils"
-import type { ProjectData } from "@/lib/types"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils";
+import type { ProjectData } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ProjectSidebarProps {
-  isOpen: boolean
-  onClose: () => void
-  ownedProjects: ProjectData[]
-  sharedProjects: ProjectData[]
-  onCreateProject: () => void
-  onRenameProject: (project: ProjectData) => void
-  onDeleteProject: (project: ProjectData) => void
+  isOpen: boolean;
+  onClose: () => void;
+  ownedProjects: ProjectData[];
+  sharedProjects: ProjectData[];
+  onCreateProject: () => void;
+  onRenameProject: (project: ProjectData) => void;
+  onDeleteProject: (project: ProjectData) => void;
 }
 
 function ProjectItem({
@@ -23,20 +25,39 @@ function ProjectItem({
   onRename,
   onDelete,
 }: {
-  project: ProjectData
-  showActions: boolean
-  onRename: () => void
-  onDelete: () => void
+  project: ProjectData;
+  showActions: boolean;
+  onRename: () => void;
+  onDelete: () => void;
 }) {
+  const pathname = usePathname();
+  const isActive = pathname === `/editor/${project.id}`;
+
   return (
-    <div className="group flex items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-elevated">
-      <span className="truncate text-sm text-copy-primary">{project.name}</span>
+    <Link
+      href={`/editor/${project.id}`}
+      className={cn(
+        "group flex items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-elevated",
+        isActive && "bg-accent-dim hover:bg-accent-dim",
+      )}
+    >
+      <span
+        className={cn(
+          "truncate text-sm",
+          isActive ? "text-brand font-medium" : "text-copy-primary",
+        )}
+      >
+        {project.name}
+      </span>
       {showActions && (
         <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
           <Button
             variant="ghost"
             size="icon-xs"
-            onClick={onRename}
+            onClick={(e) => {
+              e.preventDefault();
+              onRename();
+            }}
             aria-label={`Rename ${project.name}`}
           >
             <Pencil className="h-3 w-3" />
@@ -44,7 +65,10 @@ function ProjectItem({
           <Button
             variant="ghost"
             size="icon-xs"
-            onClick={onDelete}
+            onClick={(e) => {
+              e.preventDefault();
+              onDelete();
+            }}
             aria-label={`Delete ${project.name}`}
             className="text-error hover:text-error"
           >
@@ -52,8 +76,8 @@ function ProjectItem({
           </Button>
         </div>
       )}
-    </div>
-  )
+    </Link>
+  );
 }
 
 export function ProjectSidebar({
@@ -71,7 +95,7 @@ export function ProjectSidebar({
       <div
         className={cn(
           "fixed inset-0 z-30 bg-black/50 transition-opacity duration-200 lg:hidden",
-          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0",
         )}
         onClick={onClose}
         aria-hidden
@@ -79,12 +103,14 @@ export function ProjectSidebar({
 
       <aside
         className={cn(
-          "fixed left-0 top-12 z-40 flex h-[calc(100vh-3rem)] w-72 flex-col border-r border-surface-border bg-surface transition-transform duration-200",
-          isOpen ? "translate-x-0" : "-translate-x-full"
+          "fixed left-0 top-16 z-40 flex h-[calc(100vh-4rem)] w-72 flex-col border-r border-surface-border bg-surface transition-transform duration-200",
+          isOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex items-center justify-between border-b border-surface-border px-4 py-3">
-          <span className="text-sm font-semibold text-copy-primary">Projects</span>
+          <span className="text-sm font-semibold text-copy-primary">
+            Projects
+          </span>
           <Button
             variant="ghost"
             size="icon-sm"
@@ -96,7 +122,10 @@ export function ProjectSidebar({
         </div>
 
         <div className="flex flex-1 flex-col overflow-hidden p-3">
-          <Tabs defaultValue="my-projects" className="flex flex-1 flex-col overflow-hidden">
+          <Tabs
+            defaultValue="my-projects"
+            className="flex flex-1 flex-col overflow-hidden"
+          >
             <TabsList className="w-full">
               <TabsTrigger value="my-projects" className="flex-1">
                 My Projects
@@ -106,7 +135,10 @@ export function ProjectSidebar({
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="my-projects" className="flex-1 overflow-y-auto pt-1">
+            <TabsContent
+              value="my-projects"
+              className="flex-1 overflow-y-auto pt-1"
+            >
               {ownedProjects.length === 0 ? (
                 <div className="flex h-full items-center justify-center">
                   <p className="text-sm text-copy-muted">No projects yet</p>
@@ -161,5 +193,5 @@ export function ProjectSidebar({
         </div>
       </aside>
     </>
-  )
+  );
 }
